@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+    
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body{
+            background-color: #e5ebf3;
+        }
+        main{
+            padding: 3rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        h1{
+            color: rgb(4, 4, 77);
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .counter{
+            background-color:#e5ebf3;
+            padding: 1rem;
+            border-radius: 1rem;
+            color: white;
+        }
+        .counter-value {
+            color: darkgreen;
+            font-size: 10rem;
+            font-weight: 500;
+            text-align: center;
+
+        }
+        .counter-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 0.5rem;
+
+        }
+        .counter-controls button{
+            margin: 0 0.5rem;
+        }
+        button{
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s ease-out;
+
+        }
+        button span{
+            display: block;
+            transition: 0.4s ease-out;
+        }
+
+        .container{
+            width: 500px;
+            height: auto;
+            border: 5px solid black;
+            padding: 130px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Counter</h1>
+            <div class="counter">
+                <div class="counter-value">0</div>
+                <div class="counter-controls">
+                    <button data-action="decrease">
+                        <span>Decrease</span>
+                    </button>
+                    <button data-action="reset">
+                        <span>Reset</span>
+                    </button>
+                    <button data-action="increase">
+                        <span>Increase</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+</body>
+<script>
+    const actions = Array.from(
+        document.querySelectorAll('[data-action]')
+    );
+
+    let counter = localStorage.getItem('counter')|| 0;
+
+    document.querySelector(".counter-value").innerText = counter;
+
+    actions.forEach(action => {
+        action.addEventListener('click', () => {
+            const type = action.dataset.action;
+            switch(type) {
+                case 'increase' :
+                    counter++;
+                    break;
+                case 'decrease' : 
+                    counter--;
+                    break;
+                case 'reset' : 
+                    counter = 0;
+                    break;       
+            }
+            document.querySelector(".counter-value").innerText =
+            counter;
+        });
+        
+    });
+
+</script>
+</html>

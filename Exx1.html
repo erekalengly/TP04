@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Style the tab */
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.tab {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  width: 100%;
+  display: flex;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tab > *{
+  flex-basis: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background: #e5ebf3;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #fff;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #fff;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  height: 160px;
+  background: #fff;
+  margin-bottom: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.tabcontent p{
+  font-size: 0.75rem;
+}
+
+.container{
+  width: 600px;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 5px solid black;
+  padding: 20px 5px 0 5px;
+  background: #f1f5f8;
+}
+
+.picture{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.picture img{
+  width: 100%;
+  border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <span id="title" class="text-green-100 font-bold text-[12px] text-[#434a54]"></span>
+    <h2>ABOUT</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Earum, aperiam!</p>
+    <div class="picture">
+        <img src="ex1.png">
+    </div>
+
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'History')">History</button>
+      <button class="tablinks" onclick="openCity(event, 'Vision')">Vision</button>
+      <button class="tablinks" onclick="openCity(event, 'Goals')">Goals</button>
+    </div>
+
+    <div class="tabcontent" id="History">
+      <h3>History</h3>
+      <p>I'm baby wolf pickled schilz try-hard normcore marfa man bun mumblecore vice pop-up XOXO lomo kombucha glossier bicycle rights. Umami kinfolk salvia jean shorts offal venmo. Knausgaard tilde try-hard, woke fixie banjo man bun. Small batch tumeric mustache tbh wayfarers 8-bit shaman chartreuse tacos. Viral direct trade hoodie ugh chambray. craft beer pork belly flannel tacos single-origin coffee art party migas plaid pop-up.</p>
+    </div>
+
+    <div class="tabcontent" id="Vision">
+      <h3>Vision</h3>
+      <p>Man bun PBR&B keytar copper mug prism, hell of helvetica. Synth crucifix offal deep v hella buodiesel. Church-key listicle polaroid put a bird on it chillwave palo santo enamel pin, tattoed meggins franzen la croix cray.</p> 
+    </div>
+
+    <div class="tabcontent" id="Goals">
+      <h3>Goals</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione earum voluptate vel vero reiciendis reprehenderit impedit incidunt, quidem quas at velit qui, laborum perspiciatis debitis distinctio nostrum animi est atque?</p>
+    </div>
+  </div>
+
+<script>
+  document.getElementById('History').style.display = "block";
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+</script>
+   
+</body>
+</html> 

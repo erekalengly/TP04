@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random color generator</title>
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+</head>
+<body>
+    <div class="w-[100vw] h-[100vh] flex items-center justify-center">
+        <div class="w-[300px] h-[480px] border-4 border-black bg-[#f5f6f6] flex flex-col">
+            <div class="mt-2 mb-2 ml-3 mr-3 bg-[#fff] h-full flex flex-col">
+                <h2 class="text-[#58a9ea] ml-[10px] h-[40px] flex items-center text-[12px]">Random Color Genrator</h2>
+                <div class="flex flex-col h-full">
+                    <div id="top" class="flex-1 flex flex-col items-center justify-between">
+                        <div class="pl-1 pr-1 pt-2 w-full h-[70px]">
+                            <div class="flex flex-col justify-center items-center w-full bg-red-100 h-full bg-[#222222]">
+                                <h1 class="text-[18px] text-[#fff] font-bold">Background Color:</h1>
+                                <p id="label" class="text-[16px] text-[#47a3e8] font-bold">#2336FB</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mb-1">
+                            <button id="generate" class="rounded-md pt-2 pb-2 pl-3 pr-3 bg-[#222222] text-[#fff] text-sm">GENERATE</button>
+                            <button id="reset" class="rounded-md pt-2 pb-2 pl-3 pr-3 border-2 border-[#222222] text-[#222222] text-sm">RESET</button>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="pl-[10px] pt-[5px]" id="html">
+                           
+                        </div>
+                    </div>
+                    <div id="bottom" class="flex-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    let html = document.getElementById('html')
+    let label = document.getElementById('label')
+    let generate = document.getElementById('generate')
+    let reset = document.getElementById('reset')
+    let topp = document.getElementById('top')
+    let bottomm = document.getElementById('bottom')
+
+    var string = ""
+
+
+    class Color {
+
+        colorType = ''
+        records = []
+
+        constructor(type) {
+            this.colorType = type
+        }
+
+        generate(){
+            this.records = []
+            if ( this.colorType === "HEX" ){
+                for ( let i = 0 ; i < 8 ; ++i )
+                    this.records.push('#' + (Math.random()*0xFFFFFF<<0).toString(16))
+            }
+        }
+
+        getRandomNumber(){
+            return Math.floor(Math.random() * 8)
+        }
+
+        getRecords(){
+            return this.records
+        }
+
+        reset(){
+            this.records = []
+            return this.records
+        }
+
+    }
+
+    let color = new Color('HEX')
+
+    generate.onclick = () => {
+        color.generate()
+        dumping()
+        randomColor()
+    }
+
+    reset.onclick = () => {
+        color.reset()
+        localStorage.clear();
+        html.innerHTML = ''
+    }
+
+    if ( localStorage.getItem('0') ){
+        output()
+        topp.style.background = `${localStorage.getItem('0')}`
+        bottomm.style.background = `${localStorage.getItem('0')}`
+    }else{
+        topp.style.background = '#2336fb'
+        bottomm.style.background = '#2336fb'
+    }
+
+    function dumping(){
+        let counter = 0
+        color.getRecords().forEach( (data) => {
+            localStorage.setItem(`${counter}`, data)
+            counter = counter + 1
+        })
+        output()
+    }
+
+    function randomColor(){
+        let labelcolor = localStorage.getItem(`${color.getRandomNumber()}`)
+        label.innerHTML = labelcolor
+        topp.style.background = `${labelcolor}`
+        bottomm.style.background = `${labelcolor}`
+    }
+    function output (){
+
+        html.innerHTML = ''
+        string = ''
+
+        for ( let i = 0 ; i < 8 ; ++i ){
+
+                string += 
+                `
+                    <div class="flex gap-1 items-center">
+                        <p class="text-xs text-[#757d8b]">${localStorage.getItem(`${i}`)}</p>
+                        <span class="w-[10px] h-[10px] bg-[${localStorage.getItem(`${i}`)}]"></span>
+                    </div>
+                `
+
+        }
+        
+        html.innerHTML = string
+    }
+</script>
+</html>

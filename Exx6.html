@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAV BAR</title>
+    <link rel="stylesheet" href="stype6.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" <script
+        src="https://cdn.tailwindcss.com">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="navigation flex justify-between">
+                <div id="slider" class="navigation-container">
+                    <div class="top w-full p-2">
+                        <div class="item">
+                            <h1>SIDE-BAR</h1>
+                            <i id="closer" class="text-red-500 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                                </svg></i>
+                        </div>
+                        <ul id="navbar">
+                            <li><a>Home</a></li>
+                            <li><a>About</a></li>
+                            <li><a>Projects</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                    <ul id="social">
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa-solid fa-gem"></i></a></li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <i id="hamburger" style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let slider = document.getElementById('slider')
+    let closer = document.getElementById('closer')
+    let hamburger = document.getElementById('hamburger')
+    var counter = 0
+    hamburger.onclick = () => {
+        if (counter % 2 == 0) {
+            slider.style.transform = 'translateX(0)'
+        } else {
+            slider.style.transform = 'translateX(-400px)'
+        }
+        counter += 1
+    }
+
+    closer.onclick = () => {
+        slider.style.transform = 'translateX(-400px)'
+    }
+
+</script>
+
+</html>
